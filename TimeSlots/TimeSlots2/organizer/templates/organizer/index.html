@@ -1,0 +1,67 @@
+{% extends 'organizer/base.html' %}
+
+{% block title %}
+Органайзер
+{% endblock %}
+
+{% block header %}
+Time Line
+{% endblock %}
+
+{% block body %}
+{% if tasks %}
+<form>
+    <a href="{% url 'index' %}"> Главная </a>
+    <a href="{% url 'contacts' %}"> Контакты </a>
+    <a href="{% url 'task' %}"> Задания </a>
+</form>
+<table width="400" border="5" cellspacing="0" cellpadding="5" bgcolor="yellow" bordercolor="blue">
+<tr>
+  <th>
+    <table width="100%" border="5" cellspacing="4" cellpadding="5" bgcolor="lightblue" bordercolor="lightblue">
+        {% for task in tasks %}
+          <tr height="25" bgcolor="pink">
+            <td draggable="true">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-secondary">red..</button>
+                <button type="button" class="btn btn-outline-secondary">mov</button>
+                <button type="button" class="btn btn-outline-secondary">del.</button>
+              </div>
+              <p>{{ task.title }}</p>
+              <p>{{ task.description }}</p>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr height="250">
+        </tr>
+        <tr><td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <form action="{% url 'task' %}" target="_blank">
+                    <button type="submit" class="btn btn-primary">Создать задание</button>
+                </form>
+            </div>
+        </td></tr>
+    </table>
+  </th>
+</tr>
+</table>
+{% else %}
+<table width="400" border="5" cellspacing="0" cellpadding="5" bgcolor="yellow" bordercolor="blue">
+<tr>
+  <th height="600">
+    <table width="100%" height="100%" border="5" cellspacing="4" cellpadding="5" bgcolor="lightblue" bordercolor="lightblue">
+        <tr>
+            <td>
+                <a href="{% url 'task' %}"> Создать задание</a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="submit" class="btn btn-primary">Создать задание</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+  </th>
+</tr>
+</table>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'organizer/base.html' %}
+
+{% block title %}
+Contacts
+{% endblock %}
+
+{% block header %}
+Контакты
+{% endblock %}
+
+{% block body %}
+<form>
+    <a href="{% url 'index' %}"> Главная </a>
+    <a href="{% url 'task' %}"> Задания </a>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'organizer/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block header %}
+{{ header }}
+{% endblock %}
+
+{% block body %}
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="title" class="form-label">Название задания</label>
+    {{ form.title }}
+    <div id='titleHelp', class='form-text'>Введите задачу</div>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Описание задачи</label>
+    {{ form.description }}
+  </div>
+    <button type="submit" class="btn btn-primary">Создать задание</button>
+</form>
+{% endblock %}
+
+
+
