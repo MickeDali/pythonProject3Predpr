@@ -9,6 +9,7 @@ Time Line
 {% endblock %}
 
 {% block body %}
+
 {% if tasks %}
 <form>
     <a href="{% url 'index' %}"> Главная </a>
@@ -45,6 +46,11 @@ Time Line
   </th>
 </tr>
 </table>
+
+<button type="button" class="btn btn-primary">
+  Notifications <span class="badge bg-secondary">4</span>
+</button>
+
 {% else %}
 <table width="400" border="5" cellspacing="0" cellpadding="5" bgcolor="yellow" bordercolor="blue">
 <tr>
@@ -62,6 +68,8 @@ Time Line
   </th>
 </tr>
 </table>
+
+
 {% endif %}
 
 {% endblock %}

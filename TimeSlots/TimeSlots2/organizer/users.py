@@ -71,13 +71,52 @@ class Implementer(User):
     def __str__(self):
         return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
+class ServiceObject(object):
+    __last_id = 0
+    __list = dict()
+    def __init__(self, name, service_type, status):
+        ServiceObject.__last_id += 1
+        self.id = ServiceObject.__last_id
+        self.name = name
+        self.service_type = service_type
+        self.status = status
+
+    def set_customer(self, customer):
+        self.customer = customer
+
+    def set_implementers(self, implementers):
+        self.implementers = implementers
+
+    def __str__(self):
+        return str(self.id) + ' ' + str(self.name) + ' ' + str(self.service_type) + ' ' + str(self.status)
+
+class Order(object):
+    __last_id = 0
+    __list = dict()
+    def __init__(self, implementer, service_object, service_type, status, description):
+        Order.__last_id += 1
+        self.id = Order.__last_id
+        self.implementer = implementer
+        self.service_object = service_object
+        self.service_type = service_type
+        self.status = status
+        self.description = description
+
+    def __str__(self):
+        return str(self.id) + ' ' + str(self.implementer.surname) + ' ' + str(self.service_object.name) + ' ' + \
+               str(self.service_type) + ' ' + str(self.status) + ' ' + str(self.description)
+
 
 customer1 = Customer('Михаил', 'Недялко', '+79112321654', ('video', 'sked', 'signalka', 'pozharka', 'domofon'))
-implementer1 = Implementer('Юлия', 'Недялко', '+79118101354', ('video', 'sked', 'signalka', 'pozharka', 'domofon'))
+implementer1 = Implementer('Юлия', 'Недялко', '+79118101354', ('video', 'sked'))
+service_object_1 = ServiceObject('ООО ФЕРМЕР-МАРКЕТ', ('video', 'skud'), 'status1')
+service_object_1.set_customer(customer1)
+service_object_1.set_implementers(implementer1)
+order1 = Order(implementer1, service_object_1, ('video'), 'заявка', 'нужны дополнительные камеры')
+
+
 print(str(customer1))
-print(customer1.service_type)
 print(implementer1)
-customer1.id = 5
-implementer1.id = 6
-print(customer1)
-print(implementer1)
+print(service_object_1)
+print(str(service_object_1) + ' ' + str(service_object_1.customer) + ' ' + str(service_object_1.implementers))
+print(order1)
