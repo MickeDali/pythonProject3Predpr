@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Task
-from .forms import TaskForm
+from .models import Task, User
+from .forms import TaskForm, UserForm
 
 ##### REST from rest_framework import viewsets
 ##### REST from .serializers import TaskSerializer
@@ -32,6 +32,17 @@ def task(request):
         'form' : form
     }
     return render(request, 'organizer/task.html', context)
+
+def regist(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = UserForm()
+    context = {
+        'form' : form
+    }
+    return render(request, 'organizer/regist.html', context)
 
 ##### REST class TaskViewSet(viewsets.ModelViewSet):
 ##### REST     queryset = Task.objects.all().order_by('id')
