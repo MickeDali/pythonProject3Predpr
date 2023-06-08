@@ -8,8 +8,96 @@ named_tuple = time.localtime()
 time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
 print(time_string)
 
+widgets = {
+    'field_user_surname': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_surname",
+        'aria-describedby': "field_user_surnameHelp",
+        'lenght': 50
+    })
+    'field_user_name': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_name",
+        'aria-describedby': "field_user_nameHelp",
+        'lenght': 50
+    })
+    'field_user_name2': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_name2",
+        'aria-describedby': "field_user_name2Help",
+        'lenght': 50
+    })
+    'field_user_position': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_position",
+        'aria-describedby': "field_user_positionHelp",
+        'lenght': 50
+    })
+    'field_user_org_name': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_org_name",
+        'aria-describedby': "field_user_org_nameHelp",
+        'lenght': 50
+    })
+    'field_user_city': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_city",
+        'aria-describedby': "field_user_cityHelp",
+        'lenght': 50
+    })
+    'field_user_street': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_street",
+        'aria-describedby': "field_user_streetHelp",
+        'lenght': 50
+    })
+    'field_user_hauce': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_hauce",
+        'aria-describedby': "field_user_hauceHelp",
+        'lenght': 50
+    })
+    'field_user_phone': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_phone",
+        'aria-describedby': "field_user_phoneHelp",
+        'lenght': 50
+    })
+    'field_user_email': TextInput(attrs={
+        'class': "form-control",
+        'id': "field_user_email",
+        'aria-describedby': "field_user_emailHelp",
+        'lenght': 50
+    })
+}
+
+@property
+def phone(self):
+    return self.__phone
 
 
+@staticmethod
+def get_user_by_id(id):
+    for user in User.__list():
+        if user.id == id:
+            return user
+    raise ValueError("Пользователь не найден")
+
+
+@staticmethod
+def get_user_by_phone(phone):
+    for user in User.__list():
+        if user.phone == phone:
+            return user
+    raise ValueError("Пользователь не найден")
+
+
+def get_id(self):
+    return self.id
+
+
+def set_phone(self, phone):
+    pass
 
 
 class Address(object):

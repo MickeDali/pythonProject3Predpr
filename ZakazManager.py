@@ -11,7 +11,8 @@ print(time_string)
 
 class TimeSlot(object):
 
-    def __init__(self, time_start, time_stop, slotslist, status, color, slot_type, text):
+    def __init__(self, time_create, time_start, time_stop, slotslist, status, color, slot_type, text):
+        self.time_create = time_create
         self.time_start = time_start
         self.time_stop = time_stop
         self.slotslist = slotslist

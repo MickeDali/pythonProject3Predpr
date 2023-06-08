@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'organizer',
+    'rest_framework_swagger',
     ##### REST     'rest_framework',
 ]
 
