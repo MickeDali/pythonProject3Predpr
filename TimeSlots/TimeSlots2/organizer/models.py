@@ -82,10 +82,22 @@ class Customer(User):
 
 
 class Implementer(User):
-    def __init__(self, name, surname, phone, service_type):
+    def __init__(self, name, surname, phone, service_type, service_objects_list, title, description, mobile, type_of_work, type_of_system, qualification ):
         super().__init__(name, surname, phone)
-        self.service_type = service_type
         self.__id = self.get_id()
+        self.rating                             # рейтинг
+        self.title = title                      # профессия
+        self.description = description          # резюме
+        self.mobile = mobile                    # мобильность (общественный транспорт, личный авто)
+        self.type_of_work = type_of_work        # специализация по типу работ (монтаж, ремонт, обслуживание, поддержка)
+        self.type_of_system = type_of_system    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
+        self.qualification  = qualification     # квалификация (стажер, обучен)
+        # календарь заявок
+        # список объектов
+        # история
+        # хранилище данных (фото, видео, схемы, файлы)
+        #
+        #
 
     def __str__(self):
         return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
@@ -102,10 +114,10 @@ class ServiceObject(object):
         self.status = status                # статус (норма, заявка на обслуживание, ожидание обслуживания, обслуживание, обслуживание прошел)
         self.
         # геоданные GPS, карта с положением
-        # альбомы (схемы, фото, видео, файлы)
+        # альбомы (схемы, фото, видео, файлы, записи)
         # список исполнмиелей с рейтингом
-        #
-        #
+        # история обслуживания
+        # календарь заявок
         #
         # метод добавления геоданных
 
