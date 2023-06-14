@@ -1,5 +1,5 @@
 import time
-
+from django.db import models
 sec = time.time()
 print("Местное время:", sec)
 local_time = time.ctime(sec)
@@ -8,68 +8,90 @@ named_tuple = time.localtime()
 time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
 print(time_string)
 
-widgets = {
-    'field_user_surname': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_surname",
-        'aria-describedby': "field_user_surnameHelp",
-        'lenght': 50
-    })
-    'field_user_name': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_name",
-        'aria-describedby': "field_user_nameHelp",
-        'lenght': 50
-    })
-    'field_user_name2': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_name2",
-        'aria-describedby': "field_user_name2Help",
-        'lenght': 50
-    })
-    'field_user_position': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_position",
-        'aria-describedby': "field_user_positionHelp",
-        'lenght': 50
-    })
-    'field_user_org_name': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_org_name",
-        'aria-describedby': "field_user_org_nameHelp",
-        'lenght': 50
-    })
-    'field_user_city': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_city",
-        'aria-describedby': "field_user_cityHelp",
-        'lenght': 50
-    })
-    'field_user_street': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_street",
-        'aria-describedby': "field_user_streetHelp",
-        'lenght': 50
-    })
-    'field_user_hauce': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_hauce",
-        'aria-describedby': "field_user_hauceHelp",
-        'lenght': 50
-    })
-    'field_user_phone': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_phone",
-        'aria-describedby': "field_user_phoneHelp",
-        'lenght': 50
-    })
-    'field_user_email': TextInput(attrs={
-        'class': "form-control",
-        'id': "field_user_email",
-        'aria-describedby': "field_user_emailHelp",
-        'lenght': 50
-    })
-}
+# widgets = {
+#     'field_user_surname': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_surname",
+#         'aria-describedby': "field_user_surnameHelp",
+#         'lenght': 50
+#     })
+#     'field_user_name': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_name",
+#         'aria-describedby': "field_user_nameHelp",
+#         'lenght': 50
+#     })
+#     'field_user_name2': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_name2",
+#         'aria-describedby': "field_user_name2Help",
+#         'lenght': 50
+#     })
+#     'field_user_position': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_position",
+#         'aria-describedby': "field_user_positionHelp",
+#         'lenght': 50
+#     })
+#     'field_user_org_name': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_org_name",
+#         'aria-describedby': "field_user_org_nameHelp",
+#         'lenght': 50
+#     })
+#     'field_user_city': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_city",
+#         'aria-describedby': "field_user_cityHelp",
+#         'lenght': 50
+#     })
+#     'field_user_street': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_street",
+#         'aria-describedby': "field_user_streetHelp",
+#         'lenght': 50
+#     })
+#     'field_user_hauce': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_hauce",
+#         'aria-describedby': "field_user_hauceHelp",
+#         'lenght': 50
+#     })
+#     'field_user_phone': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_phone",
+#         'aria-describedby': "field_user_phoneHelp",
+#         'lenght': 50
+#     })
+#     'field_user_email': TextInput(attrs={
+#         'class': "form-control",
+#         'id': "field_user_email",
+#         'aria-describedby': "field_user_emailHelp",
+#         'lenght': 50
+#     })
+# }
+class User(models.Model):
+    __last_id = 0
+    __list = dict()
+    #User.__last_id += 1
+    #self.id = User.__last_id
+
+    #field_user_subject = models.CharField('user_subject', max_length=20, help_text="Выбирите тип регистрации")
+    field_user_surname = models.CharField('user_surname', max_length=20, help_text="Введите фамилию")
+    field_user_name = models.CharField('user_name', max_length=20, help_text="Введите имя")
+    field_user_name2 = models.CharField('user_name2', max_length=20, help_text="Введите отчество")
+    field_user_position = models.CharField('user_position', max_length=20, help_text="Введите должность")
+    field_user_org_name = models.CharField('user_org_name', max_length=20, help_text="Введите название организации")
+    field_user_city = models.CharField('user_city', max_length=20, help_text="Введите город")
+    field_user_street = models.CharField('user_street', max_length=20, help_text="Введите название улицы")
+    field_user_hauce = models.CharField('user_hauce', max_length=20, help_text="Введите номер дома, корпус и т.д.")
+    field_user_phone = models.CharField('user_phone', max_length=20, help_text="Введите номер телефона")
+    field_user_email = models.CharField('user_email', max_length=20, help_text="Введите электронную почту")
+    #field_user_soglasie = models.CharField('user_soglasie', max_length=20, help_text="Установите флажок, если согласны")
+
+    field_user_created = time.time()
+    field_user_last_vizit = field_user_created
+    field_user_updated = None
 
 @property
 def phone(self):

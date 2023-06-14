@@ -5,7 +5,7 @@ sec = time.time()
 
 # Create your models here.
 class Task(models.Model):
-    title = models.CharField('Title', max_length=180)
+    title = models.CharField('Title', max_length=180)               # заголовок
     description = models.TextField('Description', max_length=256)
     time_creat = time.localtime()
     time_start = time.localtime()
@@ -37,4 +37,118 @@ class User(models.Model):
     field_user_last_vizit = field_user_created
     field_user_updated = None
 
+@property
+def phone(self):
+    return self.__phone
 
+
+@staticmethod
+def get_user_by_id(id):
+    for user in User.__list():
+        if user.id == id:
+            return user
+    raise ValueError("Пользователь не найден")
+
+
+@staticmethod
+def get_user_by_phone(phone):
+    for user in User.__list():
+        if user.phone == phone:
+            return user
+    raise ValueError("Пользователь не найден")
+
+
+def get_id(self):
+    return self.id
+
+
+def set_phone(self, phone):
+    pass
+
+
+class Address(object):
+    def __init__(self, location, city, street, dom, korpus, liter, index, phones, contacts, email):
+        pass
+
+
+class Customer(User):
+    def __init__(self, name, surname, phone, service_type):
+        super().__init__(name, surname, phone)
+        self.service_type = service_type
+        self.__id = self.get_id()
+
+    def __str__(self):
+        return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
+
+
+class Implementer(User):
+    def __init__(self, name, surname, phone, service_type):
+        super().__init__(name, surname, phone)
+        self.service_type = service_type
+        self.__id = self.get_id()
+
+    def __str__(self):
+        return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
+
+class ServiceObject(object):
+    __last_id = 0
+    __list = dict()
+    def __init__(self, name, title, service_type, status):
+        ServiceObject.__last_id += 1
+        self.id = ServiceObject.__last_id
+        self.name = name                    # Название объекта
+        self.title = title                  # Полное наименование объекта
+        self.service_type = service_type    # тип сервиса (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
+        self.status = status                # статус (норма, заявка на обслуживание, ожидание обслуживания, обслуживание, обслуживание прошел)
+        self.
+        # геоданные GPS, карта с положением
+        # альбомы (схемы, фото, видео, файлы)
+        # список исполнмиелей с рейтингом
+        #
+        #
+        #
+        # метод добавления геоданных
+
+    def set_customer(self, customer):
+        self.customer = customer
+
+    def set_implementers(self, implementers):
+        self.implementers = implementers
+
+    def __str__(self):
+        return str(self.id) + ' ' + str(self.name) + ' ' + str(self.service_type) + ' ' + str(self.status)
+
+class Order(object):
+    __last_id = 0
+    __list = dict()
+    def __init__(self, desired_implementer, implementer, service_object, service_type, status, description, time_create, desired_execution_time ):
+        Order.__last_id += 1
+        self.id = Order.__last_id
+        self.desired_implementer = desired_implementer  # предпологаемый исполнитель
+        self.implementer = implementer          # фактический  исполнитель
+        self.service_object = service_object    # обслуживаемый объект
+        self.service_type = service_type        # тип объекта
+        self.status = status                    # статус заявки
+        self.description = description          # описание заявки
+        self.time_create = time_create          # время подачи заявки
+        self.desired_execution_time = desired_execution_time    # желаемое время
+        # фото
+
+    def __str__(self):
+        return str(self.id) + ' ' + str(self.implementer.surname) + ' ' + str(self.service_object.name) + ' ' + \
+               str(self.service_type) + ' ' + str(self.status) + ' ' + str(self.description)
+
+
+# customer1 = Customer('Михаил', 'Недялко', '+79112321654', ('video', 'sked', 'signalka', 'pozharka', 'domofon'))
+# implementer1 = Implementer('Юлия', 'Недялко', '+79118101354', ('video', 'sked'))
+# service_object_1 = ServiceObject('ООО ФЕРМЕР-МАРКЕТ', ('video', 'skud'), 'status1')
+# service_object_1.set_customer(customer1)
+# service_object_1.set_implementers(implementer1)
+# order1 = Order(implementer1, service_object_1, ('video'), 'заявка', 'нужны дополнительные камеры')
+#
+#
+# print(str(customer1))
+# print(implementer1)
+# print(service_object_1)
+# print(str(service_object_1) + ' ' + str(service_object_1.customer) + ' ' + str(service_object_1.implementers))
+# print(order1)
