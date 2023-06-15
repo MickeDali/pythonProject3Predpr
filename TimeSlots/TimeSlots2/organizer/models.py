@@ -7,7 +7,7 @@ sec = time.time()
 class Task(models.Model):
     title = models.CharField('Title', max_length=180)               # заголовок
     description = models.TextField('Description', max_length=256)
-    time_creat = time.localtime()
+    time_create = time.localtime()
     time_start = time.localtime()
     time_stop = time.localtime()
 
@@ -93,10 +93,12 @@ class Implementer(User):
         self.type_of_system = type_of_system    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
         self.qualification  = qualification     # квалификация (стажер, обучен)
         # календарь заявок
+        # расписание
         # список объектов
+        # список заказчиков
         # история
         # хранилище данных (фото, видео, схемы, файлы)
-        #
+        # геоданные (расположение, охват, маршруты)
         #
 
     def __str__(self):
@@ -143,7 +145,7 @@ class Order(object):
         self.status = status                    # статус заявки
         self.description = description          # описание заявки
         self.time_create = time_create          # время подачи заявки
-        self.desired_execution_time = desired_execution_time    # желаемое время
+        self.desired_execution_time = desired_execution_time    # желаемое время иссполнения
         # фото
 
     def __str__(self):
