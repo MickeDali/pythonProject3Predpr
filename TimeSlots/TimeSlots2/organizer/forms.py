@@ -4,7 +4,7 @@ from django.forms import ModelForm,TextInput, CharField
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'time_create', 'time_start', 'time_stop']
+        fields = ['title', 'description']#, 'time_create', 'time_start', 'time_stop']
         widgets = {
             'title': TextInput(attrs={
                 'class': "form-control",
@@ -17,25 +17,25 @@ class TaskForm(ModelForm):
                 'id': "description",
                 'aria-describedby': "descriptionHelp",
                 'lenght': 50
-            }),
-            'time_create': TextInput(attrs={
-                'class': "form-control",
-                'id': "time_create",
-                'aria-describedby': "timecreateHelp",
-                'lenght': 50
-            }),
-            'time_start': TextInput(attrs={
-                'class': "form-control",
-                'id': "time_start",
-                'aria-describedby': "timestartHelp",
-                'lenght': 50
-            }),
-            'time_stop': TextInput(attrs={
-                'class': "form-control",
-                'id': "time_stop",
-                'aria-describedby': "timestopHelp",
-                'lenght': 50
-            })
+            })#,
+            # 'time_create': TextInput(attrs={
+            #     'class': "form-control",
+            #     'id': "time_create",
+            #     'aria-describedby': "timecreateHelp",
+            #     'lenght': 50
+            # }),
+            # 'time_start': TextInput(attrs={
+            #     'class': "form-control",
+            #     'id': "time_start",
+            #     'aria-describedby': "timestartHelp",
+            #     'lenght': 50
+            # }),
+            # 'time_stop': TextInput(attrs={
+            #     'class': "form-control",
+            #     'id': "time_stop",
+            #     'aria-describedby': "timestopHelp",
+            #     'lenght': 50
+            # })
         }
 
 class UserForm(ModelForm):

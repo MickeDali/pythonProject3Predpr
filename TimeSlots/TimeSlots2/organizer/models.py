@@ -7,9 +7,9 @@ sec = time.time()
 class Task(models.Model):
     title = models.CharField('Title', max_length=180)               # заголовок
     description = models.TextField('Description', max_length=256)
-    time_create = time.localtime()
-    time_start = time.localtime()
-    time_stop = time.localtime()
+    #time_create = time.localtime()
+    #time_start = time.localtime()
+    #time_stop = time.localtime()
 
     def str(self):
         return self.title
@@ -72,30 +72,30 @@ class Address(object):
 
 
 class Customer(User):
-    def __init__(self, name, surname, phone, service_type):
+    def __init__(self, name, surname, phone, service_type, service_objects_list):
         super().__init__(name, surname, phone)
         self.service_type = service_type
         self.__id = self.get_id()
+        self.service_objects_list = service_objects_list
 
     def __str__(self):
         return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
 
 class Implementer(User):
-    def __init__(self, name, surname, phone, service_type, service_objects_list, title, description, mobile, type_of_work, type_of_system, qualification ):
+    def __init__(self, name, surname, phone, service_type, service_objects_list, rating, title, description, mobile, type_of_work, type_of_system, qualification, calendar_order, objects_list, customers_list ):
         super().__init__(name, surname, phone)
         self.__id = self.get_id()
-        self.rating                             # рейтинг
+        self.rating = rating                    # рейтинг
         self.title = title                      # профессия
         self.description = description          # резюме
         self.mobile = mobile                    # мобильность (общественный транспорт, личный авто)
         self.type_of_work = type_of_work        # специализация по типу работ (монтаж, ремонт, обслуживание, поддержка)
         self.type_of_system = type_of_system    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
         self.qualification  = qualification     # квалификация (стажер, обучен)
-        # календарь заявок
-        # расписание
-        # список объектов
-        # список заказчиков
+        self.calendar_order = calendar_order    # календарь заявок, расписание
+        self.objects_list = objects_list        # список объектов
+        self.customers_list = customers_list    # список заказчиков
         # история
         # хранилище данных (фото, видео, схемы, файлы)
         # геоданные (расположение, охват, маршруты)
@@ -107,20 +107,19 @@ class Implementer(User):
 class ServiceObject(object):
     __last_id = 0
     __list = dict()
-    def __init__(self, name, title, service_type, status):
+    def __init__(self, name, title, service_type, status, implementers_list):
         ServiceObject.__last_id += 1
         self.id = ServiceObject.__last_id
         self.name = name                    # Название объекта
         self.title = title                  # Полное наименование объекта
         self.service_type = service_type    # тип сервиса (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
         self.status = status                # статус (норма, заявка на обслуживание, ожидание обслуживания, обслуживание, обслуживание прошел)
-        self.
-        # геоданные GPS, карта с положением
+        self.implementers_list = implementers_list  # список исполнмиелей с рейтингом
+        self.client = SearchClient('aa51fbe7-81ec-4ccb-a18c-7bd47bf08302')
+        client.search('Санкт-Петербург, ул. Тихоокеанская, 14 корпус 2', lang='ru_RU') # геоданные GPS, карта с положением
         # альбомы (схемы, фото, видео, файлы, записи)
-        # список исполнмиелей с рейтингом
         # история обслуживания
         # календарь заявок
-        #
         # метод добавления геоданных
 
     def set_customer(self, customer):
