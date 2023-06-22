@@ -1,4 +1,4 @@
-from .models import Task, User
+from .models import Task, User, ServiceObject
 from django.forms import ModelForm,TextInput, CharField
 
 class TaskForm(ModelForm):
@@ -44,3 +44,48 @@ class UserForm(ModelForm):
         fields = ['field_user_surname', 'field_user_name', 'field_user_name2',
                   'field_user_position', 'field_user_org_name', 'field_user_city', 'field_user_street',
                   'field_user_hauce', 'field_user_phone', 'field_user_email']
+
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = ServiceObject
+        fields = ['name', 'title', 'service_type', 'status', 'implementers_list', 'client']
+        widgets = {
+            'name': TextInput(attrs={
+                'class': "form-control",
+                'id': "name",
+                'aria-describedby': "nameHelp",
+                'lenght': 50
+            }),
+            'title': TextInput(attrs={
+                'class': "form-control",
+                'id': "title",
+                'aria-describedby': "titleHelp",
+                'lenght': 50
+            }),
+            'service_type': TextInput(attrs={
+                'class': "form-control",
+                'id': "service_type",
+                'aria-describedby': "service_typeHelp",
+                'lenght': 50
+            }),
+            'status': TextInput(attrs={
+                'class': "form-control",
+                'id': "status",
+                'aria-describedby': "statusHelp",
+                'lenght': 50
+            }),
+            'implementers_list': TextInput(attrs={
+                'class': "form-control",
+                'id': "implementers_list",
+                'aria-describedby': "implementers_listHelp",
+                'lenght': 50
+            }),
+            'client': TextInput(attrs={
+                'class': "form-control",
+                'id': "client",
+                'aria-describedby': "clientHelp",
+                'lenght': 50
+            })
+        }
+

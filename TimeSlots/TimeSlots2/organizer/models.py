@@ -104,19 +104,19 @@ class Implementer(User):
     def __str__(self):
         return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
-class ServiceObject(object):
+class ServiceObject(models.Model):
     __last_id = 0
     __list = dict()
-    def __init__(self, name, title, service_type, status, implementers_list):
-        ServiceObject.__last_id += 1
-        self.id = ServiceObject.__last_id
-        self.name = name                    # Название объекта
-        self.title = title                  # Полное наименование объекта
-        self.service_type = service_type    # тип сервиса (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
-        self.status = status                # статус (норма, заявка на обслуживание, ожидание обслуживания, обслуживание, обслуживание прошел)
-        self.implementers_list = implementers_list  # список исполнмиелей с рейтингом
-        self.client = SearchClient('aa51fbe7-81ec-4ccb-a18c-7bd47bf08302')
-        client.search('Санкт-Петербург, ул. Тихоокеанская, 14 корпус 2', lang='ru_RU') # геоданные GPS, карта с положением
+    __last_id += 1
+    id = __last_id
+    name = models.CharField('name', max_length=180)                # Название объекта
+    title = models.CharField('title', max_length=180)               # Полное наименование объекта
+    service_type = models.CharField('service_type', max_length=180)        # тип сервиса (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
+    status = models.CharField('status', max_length=180)              # статус (норма, заявка на обслуживание, ожидание обслуживания, обслуживание, обслуживание прошел)
+    implementers_list = models.CharField('implementers_list', max_length=180)   # список исполнмиелей с рейтингом
+    client = models.CharField('client', max_length=180)
+    #self.client = SearchClient('aa51fbe7-81ec-4ccb-a18c-7bd47bf08302')
+    #client.search('Санкт-Петербург, ул. Тихоокеанская, 14 корпус 2', lang='ru_RU') # геоданные GPS, карта с положением
         # альбомы (схемы, фото, видео, файлы, записи)
         # история обслуживания
         # календарь заявок
@@ -131,7 +131,7 @@ class ServiceObject(object):
     def __str__(self):
         return str(self.id) + ' ' + str(self.name) + ' ' + str(self.service_type) + ' ' + str(self.status)
 
-class Order(object):
+class Order(models.Model):
     __last_id = 0
     __list = dict()
     def __init__(self, desired_implementer, implementer, service_object, service_type, status, description, time_create, desired_execution_time ):
