@@ -15,6 +15,10 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('regist', views.regist, name='regist'),
     path('view', schema_view),
+    path('customer', views.customer, name='customer'),
+    path('implementer', views.implementer, name='implementer'),
+    path('service_object', views.service_object, name='service_object'),
+    path('order', views.order, name='order'),
     ##### REST patch('api/', include(router.urls))
     ##### REST     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

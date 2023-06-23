@@ -15,6 +15,9 @@ Time Line 0
     <a href="{% url 'index' %}"> Главная </a>
     <a href="{% url 'contacts' %}"> Контакты </a>
     <a href="{% url 'task' %}"> Задания </a>
+    <a href="{% url 'customer' %}"> Заказчики </a>
+    <a href="{% url 'implementer' %}"> Исполнители </a>
+    <a href="{% url 'service_object' %}"> Обслуживаемые объекты </a>
     <a href="{% url 'order' %}"> Заявка </a>
     <a href="{% url 'regist' %}"> Регистрация </a>
 </form>
@@ -32,9 +35,6 @@ Time Line 0
               </div>
                 <p>{{ task.title }}</p>
                 <p>{{ task.description }}</p>
-                <p>{{ task.time_craet }}</p>
-                <p>{{ task.time_start }}</p>
-                <p>{{ task.time_stop }}</p>
             </td>
           </tr>
         {% endfor %}

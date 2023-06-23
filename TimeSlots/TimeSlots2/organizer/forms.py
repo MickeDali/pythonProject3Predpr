@@ -87,7 +87,8 @@ class CustomerForm(ModelForm):
 class ImplementerForm(ModelForm):
     class Meta:
         model = Implementer
-        fields = ['name', 'surname', 'phone', 'service_type', 'service_objects_list', 'rating', 'title', 'description', 'mobile', 'type_of_work', 'type_of_system', 'qualification']
+        #fields = ['name', 'surname', 'phone', 'service_type', 'service_objects_list', 'rating', 'title', 'description', 'mobile', 'type_of_work', 'type_of_system', 'qualification']
+        fields = ['rating', 'title', 'description', 'mobile', 'type_of_work', 'type_of_system', 'qualification']
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",

@@ -95,7 +95,7 @@ def order(request):
     context = {
         'form': form
     }
-    return render(request, 'order/task.html', context)
+    return render(request, 'organizer/order.html', context)
 
 ##### REST class TaskViewSet(viewsets.ModelViewSet):
 ##### REST     queryset = Task.objects.all().order_by('id')
