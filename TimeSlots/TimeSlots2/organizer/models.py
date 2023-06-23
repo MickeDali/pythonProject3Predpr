@@ -17,8 +17,8 @@ class Task(models.Model):
 class User(models.Model):
     __last_id = 0
     __list = dict()
-    #User.__last_id += 1
-    #self.id = User.__last_id
+    __last_id += 1
+    id = __last_id
 
     #field_user_subject = models.CharField('user_subject', max_length=20, help_text="Выбирите тип регистрации")
     field_user_surname = models.CharField('user_surname', max_length=20, help_text="Введите фамилию")
@@ -72,30 +72,26 @@ class Address(object):
 
 
 class Customer(User):
-    def __init__(self, name, surname, phone, service_type, service_objects_list):
-        super().__init__(name, surname, phone)
-        self.service_type = service_type
-        self.__id = self.get_id()
-        self.service_objects_list = service_objects_list
+    __id = get_id()
+    service_type = models.CharField('service_type', max_length=180)
+    service_objects_list = models.CharField('service_objects_list', max_length=180)
 
     def __str__(self):
         return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
 
 class Implementer(User):
-    def __init__(self, name, surname, phone, service_type, service_objects_list, rating, title, description, mobile, type_of_work, type_of_system, qualification, calendar_order, objects_list, customers_list ):
-        super().__init__(name, surname, phone)
-        self.__id = self.get_id()
-        self.rating = rating                    # рейтинг
-        self.title = title                      # профессия
-        self.description = description          # резюме
-        self.mobile = mobile                    # мобильность (общественный транспорт, личный авто)
-        self.type_of_work = type_of_work        # специализация по типу работ (монтаж, ремонт, обслуживание, поддержка)
-        self.type_of_system = type_of_system    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
-        self.qualification  = qualification     # квалификация (стажер, обучен)
-        self.calendar_order = calendar_order    # календарь заявок, расписание
-        self.objects_list = objects_list        # список объектов
-        self.customers_list = customers_list    # список заказчиков
+    __id = get_id()
+    rating = models.CharField('rating', max_length=180)                    # рейтинг
+    title = models.CharField('title', max_length=180)                      # профессия
+    description = models.CharField('description', max_length=180)          # резюме
+    mobile = models.CharField('mobile', max_length=180)                    # мобильность (общественный транспорт, личный авто)
+    type_of_work = models.CharField('type_of_work', max_length=180)        # специализация по типу работ (монтаж, ремонт, обслуживание, поддержка)
+    type_of_system = models.CharField('type_of_system', max_length=180)    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
+    qualification  = models.CharField('qualification', max_length=180)     # квалификация (стажер, обучен)
+    calendar_order = models.CharField('calendar_order', max_length=180)    # календарь заявок, расписание
+    objects_list = models.CharField('objects_list, max', length=180)        # список объектов
+    customers_list = models.CharField('customers_list', max_length=180)    # список заказчиков
         # история
         # хранилище данных (фото, видео, схемы, файлы)
         # геоданные (расположение, охват, маршруты)
@@ -134,17 +130,16 @@ class ServiceObject(models.Model):
 class Order(models.Model):
     __last_id = 0
     __list = dict()
-    def __init__(self, desired_implementer, implementer, service_object, service_type, status, description, time_create, desired_execution_time ):
-        Order.__last_id += 1
-        self.id = Order.__last_id
-        self.desired_implementer = desired_implementer  # предпологаемый исполнитель
-        self.implementer = implementer          # фактический  исполнитель
-        self.service_object = service_object    # обслуживаемый объект
-        self.service_type = service_type        # тип объекта
-        self.status = status                    # статус заявки
-        self.description = description          # описание заявки
-        self.time_create = time_create          # время подачи заявки
-        self.desired_execution_time = desired_execution_time    # желаемое время иссполнения
+    __last_id += 1
+    id = __last_id
+    desired_implementer = models.CharField('desired_implementer', max_length=180)  # предпологаемый исполнитель
+    implementer = models.CharField('implementer', max_length=180)          # фактический  исполнитель
+    service_object = models.CharField('service_object', max_length=180)    # обслуживаемый объект
+    service_type = models.CharField('service_type', max_length=180)        # тип объекта
+    status = models.CharField('status', max_length=180)                    # статус заявки
+    description = models.CharField('description', max_length=180)          # описание заявки
+    time_create = models.CharField('time_create', max_length=180)          # время подачи заявки
+    desired_execution_time = models.CharField('desired_execution_time', max_length=180)    # желаемое время иссполнения
         # фото
 
     def __str__(self):
