@@ -1,0 +1,52 @@
+{% extends 'organizer/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block header %}
+{{ header }}
+{% endblock %}
+
+{% block body %}
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="desired_implementer", class="form-label">Предпологаемый исполнитель</label>
+    {{ form.desired_implementer }}
+  </div>
+  <div class="mb-3">
+    <label for="implementer" class="form-label">фактический  исполнитель</label>
+    {{ form.implementer }}
+  </div>
+  <div class="mb-3">
+    <label for="service_object" class="form-label">обслуживаемый объект</label>
+    {{ form.service_object }}
+  </div><div class="mb-3">
+    <label for="service_type" class="form-label">тип объекта</label>
+    {{ form.service_type }}
+  </div><div class="mb-3">
+    <label for="status" class="form-label">статус заявки</label>
+    {{ form.status }}
+  </div><div class="mb-3">
+    <label for="description" class="form-label">описание заявки</label>
+    {{ form.description }}
+  </div><div class="mb-3">
+    <label for="time_create" class="form-label">время подачи заявкиь</label>
+    {{ form.time_create }}
+  </div><div class="mb-3">
+    <label for="desired_execution_time" class="form-label">желаемое время иссполнения</label>
+    {{ form.desired_execution_time }}
+</form>
+<button type="submit" class="btn btn-primary">Создать задание</button>
+
+{% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

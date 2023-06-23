@@ -15,6 +15,9 @@ class Task(models.Model):
         return self.title
 
 class User(models.Model):
+    class Meta:
+        abstract = True
+
     __last_id = 0
     __list = dict()
     __last_id += 1
@@ -72,16 +75,23 @@ class Address(object):
 
 
 class Customer(User):
-    __id = get_id()
+    class Meta:
+        db_table = "Customer"
+    #__id = get_id()
+    surname = models.CharField('customer_surname', max_length=20, help_text="Введите фамилию")
+    name = models.CharField('customer_name', max_length=20, help_text="Введите имя")
+    phone = models.CharField('customer_phone', max_length=20, help_text="Введите номер телефона")
     service_type = models.CharField('service_type', max_length=180)
     service_objects_list = models.CharField('service_objects_list', max_length=180)
 
-    def __str__(self):
-        return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
+    #def __str__(self):
+    #    return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
 
 class Implementer(User):
-    __id = get_id()
+    class Meta:
+        db_table = "Implementer"
+    #__id = get_id()
     rating = models.CharField('rating', max_length=180)                    # рейтинг
     title = models.CharField('title', max_length=180)                      # профессия
     description = models.CharField('description', max_length=180)          # резюме
@@ -90,15 +100,15 @@ class Implementer(User):
     type_of_system = models.CharField('type_of_system', max_length=180)    #   -тип специализация по типу системы (Видео, СКУД, домофон, электрика, пожарка, тв, интернет, сети)
     qualification  = models.CharField('qualification', max_length=180)     # квалификация (стажер, обучен)
     calendar_order = models.CharField('calendar_order', max_length=180)    # календарь заявок, расписание
-    objects_list = models.CharField('objects_list, max', length=180)        # список объектов
+    objects_list = models.CharField('objects_list', max_length=180)        # список объектов
     customers_list = models.CharField('customers_list', max_length=180)    # список заказчиков
         # история
         # хранилище данных (фото, видео, схемы, файлы)
         # геоданные (расположение, охват, маршруты)
         #
 
-    def __str__(self):
-        return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
+    #def __str__(self):
+    #    return str(self.__id) + ' ' + str(self.name) + ' ' + str(self.surname) + ' ' + str(self.phone) + ' ' + str(self.service_type)
 
 class ServiceObject(models.Model):
     __last_id = 0
@@ -118,14 +128,14 @@ class ServiceObject(models.Model):
         # календарь заявок
         # метод добавления геоданных
 
-    def set_customer(self, customer):
-        self.customer = customer
+    #def set_customer(self, customer):
+    #    self.customer = customer
 
-    def set_implementers(self, implementers):
-        self.implementers = implementers
+    #def set_implementers(self, implementers):
+    #    self.implementers = implementers
 
-    def __str__(self):
-        return str(self.id) + ' ' + str(self.name) + ' ' + str(self.service_type) + ' ' + str(self.status)
+    #def __str__(self):
+    #    return str(self.id) + ' ' + str(self.name) + ' ' + str(self.service_type) + ' ' + str(self.status)
 
 class Order(models.Model):
     __last_id = 0
@@ -142,9 +152,9 @@ class Order(models.Model):
     desired_execution_time = models.CharField('desired_execution_time', max_length=180)    # желаемое время иссполнения
         # фото
 
-    def __str__(self):
-        return str(self.id) + ' ' + str(self.implementer.surname) + ' ' + str(self.service_object.name) + ' ' + \
-               str(self.service_type) + ' ' + str(self.status) + ' ' + str(self.description)
+    #def __str__(self):
+    #    return str(self.id) + ' ' + str(self.implementer.surname) + ' ' + str(self.service_object.name) + ' ' + \
+    #           str(self.service_type) + ' ' + str(self.status) + ' ' + str(self.description)
 
 
 # customer1 = Customer('Михаил', 'Недялко', '+79112321654', ('video', 'sked', 'signalka', 'pozharka', 'domofon'))

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Task, User
-from .forms import TaskForm, UserForm
+from .forms import TaskForm, UserForm, CustomerForm, ImplementerForm, ServiceObjectForm, OrderForm
 
 #from django.urls import re_path as url
 #from rest_framework_swagger.views import get_swagger_view
@@ -52,6 +52,50 @@ def regist(request):
         'form': form
     }
     return render(request, 'organizer/regist.html', context)
+
+def customer(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = CustomerForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'organizer/customer.html', context)
+
+def implementer(request):
+    if request.method == "POST":
+        form = ImplementerForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = ImplementerForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'organizer/implementer.html', context)
+
+def service_object(request):
+    if request.method == "POST":
+        form = ServiceObjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = ServiceObjectForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'organizer/service_object.html', context)
+
+def order(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+    form = OrderForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'order/task.html', context)
 
 ##### REST class TaskViewSet(viewsets.ModelViewSet):
 ##### REST     queryset = Task.objects.all().order_by('id')
