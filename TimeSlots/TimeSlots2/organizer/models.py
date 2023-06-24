@@ -17,12 +17,10 @@ class Task(models.Model):
         return self.title
 
 class User(models.Model):
-    class Meta:
-
-
-    __list = dict()
-    __last_id += 1
-    id = __last_id
+    #class Meta:
+    #__list = dict()
+    #__last_id += 1
+    #id = __last_id
 
     #field_user_subject = models.CharField('user_subject', max_length=20, help_text="Выбирите тип регистрации")
     field_user_surname = models.CharField('user_surname', max_length=20, help_text="Введите фамилию")

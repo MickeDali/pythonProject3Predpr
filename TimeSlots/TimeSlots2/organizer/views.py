@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Task, User
+from .models import Task, Customer, Implementer, ServiceObject, Order
 from .forms import TaskForm, UserForm, CustomerForm, ImplementerForm, ServiceObjectForm, OrderForm
 
 #from django.urls import re_path as url
@@ -18,7 +18,7 @@ from .forms import TaskForm, UserForm, CustomerForm, ImplementerForm, ServiceObj
 
 def index(request):
     tasks = Task.objects.all()
-    users = User.objects.all()
+    #users = User.objects.all()
     return render(request, 'organizer/index.html', {
         "title": "Органайзер",
         "header": "Список дел",
