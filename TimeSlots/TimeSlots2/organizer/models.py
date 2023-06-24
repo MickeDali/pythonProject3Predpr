@@ -3,6 +3,8 @@ import time
 
 sec = time.time()
 
+__last_id = 0
+
 # Create your models here.
 class Task(models.Model):
     title = models.CharField('Title', max_length=180)               # заголовок
@@ -16,9 +18,8 @@ class Task(models.Model):
 
 class User(models.Model):
     class Meta:
-        abstract = True
 
-    __last_id = 0
+
     __list = dict()
     __last_id += 1
     id = __last_id
