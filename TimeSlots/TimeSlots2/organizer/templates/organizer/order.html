@@ -13,46 +13,37 @@
   {% csrf_token %}
   <div class="mb-3">
     <label for="desired_implementer", class="form-label">Предпологаемый исполнитель</label>
-    {{ order.desired_implementer }}
+    {{ form.desired_implementer }}
   </div>
   <div class="mb-3">
     <label for="implementer" class="form-label">фактический  исполнитель</label>
-    {{ order.implementer }}
+    {{ form.implementer }}
   </div>
   <div class="mb-3">
     <label for="service_object" class="form-label">обслуживаемый объект</label>
-    {{ order.service_object }}
+    {{ form.service_object }}
   </div>
   <div class="mb-3">
     <label for="service_type" class="form-label">тип объекта</label>
-    {{ order.service_type }}
+    {{ form.service_type }}
   </div>
   <div class="mb-3">
     <label for="status" class="form-label">статус заявки</label>
-    {{ order.status }}
+    {{ form.status }}
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">описание заявки</label>
-    {{ order.description }}
+    {{ form.description }}
   </div>
   <div class="mb-3">
     <label for="time_create" class="form-label">время подачи заявкиь</label>
-    {{ order.time_create }}
+    {{ form.time_create }}
   </div>
   <div class="mb-3">
     <label for="desired_execution_time" class="form-label">желаемое время иссполнения</label>
-    {{ order.desired_execution_time }}
+    {{ form.desired_execution_time }}
   </div>
+<button type="submit" class="btn btn-primary">Подать заявку</button>
 </form>
-<button type="submit" class="btn btn-primary">Создать задание</button>
 
 {% endblock %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
